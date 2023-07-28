@@ -15,10 +15,11 @@ import {
   useDisclosure,
   useColorModeValue,
   Stack,
+  Image,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 
-const Links = ['पुराण संग्रह', 'Projects', 'Team'];
+const Links = ['पुराण संग्रह', 'आरतियाँ', 'व्रत - त्योहार','तीर्थ स्थल'];
 
 const NavLink = ({ children }) => (
   <Link
@@ -39,7 +40,7 @@ export default function Navbar() {
 
   return (
     <>
-      <Box bg={'#D7C0AE'} px={4}>
+      <Box bg={'#F6F4EB'} px={4} position={"sticky"} top={"0"} zIndex={"1000"} w={"100%"} borderBottom={"1px solid gray"}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <IconButton
             size={'md'}
@@ -67,10 +68,11 @@ export default function Navbar() {
                 variant={'link'}
                 cursor={'pointer'}
                 minW={0}>
-                <Avatar
-                  size={'sm'}
+                <Image
+                  w={"50px"}
+                  borderRadius={"50%"}
                   src={
-                    'https://yt3.ggpht.com/Tdvf_QlLxtV5wDj2Kk6oyAvQJqqUTgIAytQK6Q748ohrHUzofMeXhloLijyRScS0qrScUR4Zxw=s176-c-k-c0x00ffffff-no-rj-mo'
+                    'logo.jpg'
                   }
                 />
               </MenuButton>
