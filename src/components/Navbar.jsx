@@ -1,8 +1,8 @@
 import { ReactNode } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 import {
   Box,
   Flex,
-  Avatar,
   HStack,
   Link,
   IconButton,
@@ -11,7 +11,6 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
-  MenuDivider,
   useDisclosure,
   useColorModeValue,
   Stack,
@@ -21,8 +20,9 @@ import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 
 const Links = ['पुराण संग्रह', 'आरतियाँ', 'व्रत - त्योहार','तीर्थ स्थल'];
 
-const NavLink = ({ children }) => (
-  <Link
+const NavLink = ({ to, children }) => (
+  <RouterLink
+    to={to}
     px={2}
     py={1}
     rounded={'md'}
@@ -30,9 +30,9 @@ const NavLink = ({ children }) => (
       textDecoration: 'none',
       bg: useColorModeValue('gray.200', 'gray.700'),
     }}
-    href={'#'}>
+  >
     {children}
-  </Link>
+  </RouterLink>
 );
 
 export default function Navbar() {
@@ -50,15 +50,17 @@ export default function Navbar() {
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} alignItems={'center'}>
-            <Box fontWeight={'bold'} fontFamily={"Kruti Dev"} fontSize={"20px"}>धार्मिकोलॉजी</Box>
+            <Box fontWeight={'bold'} fontSize={"20px"}>धार्मिकोलॉजी</Box>
             <HStack
-              as={'nav'}
-              spacing={4}
-              display={{ base: 'none', md: 'flex' }}>
-              {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
-              ))}
-            </HStack>
+            as={'nav'}
+            spacing={4}
+            display={{ base: 'none', md: 'flex' }}
+          >
+            <NavLink to="/">पुराण संग्रह</NavLink>
+            <NavLink to="/आरतियाँ">आरतियाँ</NavLink>
+            <NavLink to="/व्रत-त्योहार">व्रत - त्योहार</NavLink>
+            <NavLink to="/tirth">तीर्थ स्थल</NavLink>
+          </HStack>
           </HStack>
           <Flex alignItems={'center'}>
             <Menu>
@@ -77,10 +79,8 @@ export default function Navbar() {
                 />
               </MenuButton>
               <MenuList>
-                <MenuItem>Link 1</MenuItem>
-                <MenuItem>Link 2</MenuItem>
-                <MenuDivider />
-                <MenuItem>Link 3</MenuItem>
+                <MenuItem>Login</MenuItem>
+                <MenuItem>Signup</MenuItem>
               </MenuList>
             </Menu>
           </Flex>
@@ -89,9 +89,10 @@ export default function Navbar() {
         {isOpen ? (
           <Box pb={4} display={{ md: 'none' }}>
             <Stack as={'nav'} spacing={4}>
-              {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
-              ))}
+              <NavLink to="/">पुराण संग्रह</NavLink>
+              <NavLink to="/आरतियाँ">आरतियाँ</NavLink>
+              <NavLink to="/व्रत-त्योहार">व्रत - त्योहार</NavLink>
+              <NavLink to="/tirth">तीर्थ स्थल</NavLink>
             </Stack>
           </Box>
         ) : null}
